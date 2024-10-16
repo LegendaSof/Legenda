@@ -23,20 +23,10 @@
             background-attachment: fixed;
             color: white;
             text-align: center;
-        }
-
-        header {
-            padding: 50px;
-        }
-
-        h1 {
-            font-size: 36px;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); 
-        }
-
-        p {
-            font-size: 18px;
-            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7); 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         /* Стиль для контейнера кнопок */
@@ -44,7 +34,11 @@
             display: flex;
             justify-content: center;
             gap: 20px;
-            margin-top: 30px;
+            margin-top: 20px;
+            position: absolute;
+            top: 20px; /* Располагаем кнопки сверху */
+            left: 0;
+            right: 0;
         }
 
         /* Основные стили для кнопок */
@@ -54,7 +48,6 @@
             padding: 15px 32px;
             text-align: center;
             font-size: 16px;
-            margin: 10px;
             border: none;
             cursor: pointer;
             border-radius: 10px;
@@ -103,9 +96,19 @@
             display: block;
         }
 
-        /* Оставайся видимым при наведении на кнопки */
-        .dropdown-content:hover {
-            display: block;
+        /* Стили для заголовка */
+        header {
+            margin-top: 100px;
+        }
+
+        h1 {
+            font-size: 36px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); 
+        }
+
+        p {
+            font-size: 18px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7); 
         }
 
         /* Стили для футера */
@@ -122,11 +125,7 @@
 </head>
 <body>
 
-<header>
-    <h1>Рад вас видеть на своём сайте!</h1>
-    <p>Выберите, что хотите посмотреть!</p>
-</header>
-
+<!-- Горизонтальные кнопки сверху -->
 <div class="container">
     <button onclick="window.location.href='Kalkulator.html'">Формула</button>
     <button onclick="window.location.href='GLV.html'">Главная</button>
@@ -141,6 +140,12 @@
         </div>
     </div>
 </div>
+
+<!-- Заголовок по центру страницы под кнопками -->
+<header>
+    <h1>Рад вас видеть на своём сайте!</h1>
+    <p>Выберите, что хотите посмотреть!</p>
+</header>
 
 <footer>
     <p>© г. Донецк 2024</p>
