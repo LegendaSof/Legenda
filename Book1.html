@@ -83,6 +83,22 @@
     font-weight: bold;
     font-size: 26px; /* Размер стрелки */
 }
+        .button-link {
+            position: fixed; /* Фиксируем кнопку в левом верхнем углу */
+            top: 10px;       /* Отступ сверху */
+            left: 10px;      /* Отступ слева */
+            padding: 10px 20px;
+            font-size: 16px;
+            color: black;
+            background-color: #4CAF50;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .button-link:hover {
+            background-color: #45a049; /* Изменение цвета при наведении */
+        }
 
             
     </style>
@@ -133,6 +149,29 @@ XX век ознаменовался значительным прогрессо
 <p>Компьютинг, пройдя долгий путь от первых механических вычислительных машин до современных мощных и умных устройств, кардинально изменил наш мир.Каждый этап его развития сопровождался новыми прорывами, которые трансформировали не только науку и технику, но и общество в целом.В будущем компьютинг будет продолжать развиваться, открывая новые горизонты и возможности для человечества.
 Однако с новыми технологиями приходят и новые вызовы, такие как этические проблемы ИИ, вопросы безопасности и приватности данных.Как и раньше, человечество должно будет адаптироваться к новым условиям и найти баланс между возможностями компьютинга и его потенциальными рисками.</p>
 </section>
+    
+    <a href="index.html" class="button-link">Вернуться на главную</a>
+   <button class="back-to-top" id="scrollToTopBtn">↑</button>
+
+<script>
+    // Показываем кнопку "Наверх", когда пользователь прокручивает страницу вниз
+    window.onscroll = function() {
+        var scrollToTopBtn = document.getElementById("scrollToTopBtn");
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            scrollToTopBtn.style.display = "block";
+        } else {
+            scrollToTopBtn.style.display = "none";
+        }
+    };
+
+    // Плавная прокрутка наверх при нажатии на кнопку
+    document.getElementById("scrollToTopBtn").onclick = function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    };
+</script>
 
 </body>
 </html>
