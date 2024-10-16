@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница</title>
+
+    <!-- Подключение шрифта из Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+
+    <style>
+        /* Основные стили */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: url('https://img-fotki.yandex.ru/get/15593/125874656.44/0_110d8b_35f7d076_XXXL.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+        }
+
+        header {
+            padding: 50px;
+        }
+
+        h1 {
+            font-size: 36px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); 
+        }
+
+        p {
+            font-size: 18px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7); 
+        }
+
+        /* Стиль для контейнера кнопок */
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        /* Основные стили для кнопок */
+        button {
+            background-color: #FF5722;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            font-size: 16px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #E64A19;
+        }
+
+        /* Стили для выпадающего меню */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            left: 0;
+            margin-top: 5px;
+            background-color: #FF5722;
+            min-width: 150px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+            z-index: 1;
+            border-radius: 10px;
+        }
+
+        .dropdown-content button {
+            background-color: #FF7043;
+            color: white;
+            padding: 10px 20px;
+            text-align: left;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+            border-radius: 0;
+        }
+
+        .dropdown-content button:hover {
+            background-color: #E64A19;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Стили для футера */
+        footer {
+            text-align: center;
+            padding: 10px;
+            color: white;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Добро пожаловать на SofStudio!</h1>
+    <p>Определитесь с выбором, вдохните по больше воздуха и нажмите наконец-то одну из кнопок.</p>
+</header>
+
+<div class="container">
+    <button onclick="window.location.href='Kalkulator.html'">Формула</button>
+    <button onclick="window.location.href='GLV.html'">Главная</button>
+
+    <!-- Кнопка с выпадающим меню для эссе -->
+    <div class="dropdown">
+        <button>Эссе</button>
+        <div class="dropdown-content">
+            <button onclick="window.location.href='Book1.html'">Эссе 1</button>
+            <button onclick="window.location.href='Book2.html'">Эссе 2</button>
+            <button onclick="window.location.href='Book3.html'">Эссе 3</button>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© г. Донецк 2024</p>
+</footer>
+
+</body>
+</html>
