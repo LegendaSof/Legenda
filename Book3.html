@@ -81,23 +81,23 @@
 }
        .button-link {
     position: fixed; /* Фиксируем кнопку */
-    top: 50%;        /* Отступ сверху на 50%, для выравнивания по вертикали */
+    top: 50%;        /* Отступ сверху на 50% для выравнивания по вертикали */
     right: 10px;     /* Отступ справа на 10px */
-    padding: 10px 20px;
-    font-size: 16px;
-    color: black;
-    background-color: #4CAF50; /* Зелёный фон */
+    font-size: 160px; /* Увеличиваем размер шрифта, чтобы стрелка была больше */
+    color: white;    /* Цвет стрелки */
+    background-color: transparent; /* Прозрачный фон */
     text-align: center;
     text-decoration: none;
     border-radius: 5px;
     transition: background-color 0.3s ease, border 0.3s ease;
-    border: 2px solid transparent; /* Прозрачная рамка */
+    border: none; /* Убираем границу */
     transform: translateY(-50%); /* Центрирование по вертикали */
+    cursor: pointer; /* Меняем курсор при наведении */
+    line-height: 160px; /* Выравнивание текста по высоте */
 }
 
 .button-link:hover {
-    background-color: #45a049; /* Изменение цвета при наведении */
-    border: 2px solid rgba(0, 0, 0, 0.3); /* Полупрозрачная рамка при наведении */
+    color: #FFD700; /* Золотой цвет стрелки при наведении */
 }
     </style>
 </head>
