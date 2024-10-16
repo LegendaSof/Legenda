@@ -91,11 +91,6 @@
             background-color: #E64A19;
         }
 
-        /* Оставайся видимым при наведении на всю область выпадающего меню */
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
         /* Стили для заголовка */
         header {
             margin-top: 100px;
@@ -132,8 +127,8 @@
 
     <!-- Кнопка с выпадающим меню для эссе -->
     <div class="dropdown">
-        <button>Эссе</button>
-        <div class="dropdown-content">
+        <button onclick="toggleDropdown()">Эссе</button>
+        <div class="dropdown-content" id="dropdown">
             <button onclick="window.location.href='essay1.html'">Эссе 1</button>
             <button onclick="window.location.href='essay2.html'">Эссе 2</button>
             <button onclick="window.location.href='essay3.html'">Эссе 3</button>
@@ -150,6 +145,17 @@
 <footer>
     <p>© г. Донецк 2024</p>
 </footer>
+
+<script>
+    function toggleDropdown() {
+        var dropdown = document.getElementById("dropdown");
+        if (dropdown.style.display === "block") {
+            dropdown.style.display = "none";
+        } else {
+            dropdown.style.display = "block";
+        }
+    }
+</script>
 
 </body>
 </html>
