@@ -47,6 +47,54 @@
             text-align: center;
             color: #333;
             font-size: 18px;
+        }
+        .back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    background: linear-gradient(145deg, #007BFF, #0056b3); /* Градиент для объёма */
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 50%; /* Круглая форма */
+    cursor: pointer;
+    font-size: 20px;
+    width: 60px; /* Увеличенная ширина кнопки */
+    height: 60px; /* Увеличенная высота кнопки */
+    text-align: center;
+    line-height: 60px; /* Вертикальное выравнивание символа стрелки */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Объёмная тень */
+    transition: all 0.3s ease; /* Плавный переход при наведении */
+}
+
+.back-to-top:hover {
+    background: linear-gradient(145deg, #0056b3, #007BFF); /* Обратный градиент при наведении */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* Более сильная тень при наведении */
+}
+
+/* Стиль для стрелки */
+.back-to-top::before {
+    content: "↑"; /* Символ стрелки */
+    font-weight: bold;
+    font-size: 26px; /* Размер стрелки */
+}
+        .button-link {
+            position: fixed; /* Фиксируем кнопку в левом верхнем углу */
+            top: 10px;       /* Отступ сверху */
+            left: 10px;      /* Отступ слева */
+            padding: 10px 20px;
+            font-size: 16px;
+            color: black;
+            background-color: #4CAF50;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .button-link:hover {
+            background-color: #45a049; /* Изменение цвета при наведении */
+        }
     </style>
 </head>
 <body>
