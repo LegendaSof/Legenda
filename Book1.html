@@ -154,7 +154,6 @@ XX век ознаменовался значительным прогрессо
    <button class="back-to-top" id="scrollToTopBtn">↑</button>
 
 <script>
-    // Показываем кнопку "Наверх", когда пользователь прокручивает страницу вниз
     window.onscroll = function() {
         var scrollToTopBtn = document.getElementById("scrollToTopBtn");
         if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
@@ -164,7 +163,6 @@ XX век ознаменовался значительным прогрессо
         }
     };
 
-    // Плавная прокрутка наверх при нажатии на кнопку
     document.getElementById("scrollToTopBtn").onclick = function() {
         window.scrollTo({
             top: 0,
