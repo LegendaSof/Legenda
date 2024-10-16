@@ -120,6 +120,27 @@
 <h3>Заключение</h3>
 <p>Мой путь в информационно - компьютерные технологии только начинается, но я уже чувствую, что выбрал правильную дорожку.Эта специальность научила меня быть гибким, креативным и научила подходить к проблемам с разных сторон.Я могу с гордостью сказать, что программирование — это не просто моя карьера; это моя страсть и мой способ изменить мир к лучшему.Я искренне надеюсь, что мои знания и опыт когда - нибудь смогут помочь другим и подарить им новые возможности.В этом мире технологий я вижу огромное количество возможностей, которые помогут мне не только стать хорошим специалистом, но и воплотить свои мечты в реальность.</p>
 </section>
+
+    <a href="index.html" class="button-link">Вернуться на главную</a>
+   <button class="back-to-top" id="scrollToTopBtn">↑</button>
+
+<script>
+    window.onscroll = function() {
+        var scrollToTopBtn = document.getElementById("scrollToTopBtn");
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            scrollToTopBtn.style.display = "block";
+        } else {
+            scrollToTopBtn.style.display = "none";
+        }
+    };
+
+    document.getElementById("scrollToTopBtn").onclick = function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    };
+</script>
   
 </body>
 </html>
