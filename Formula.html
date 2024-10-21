@@ -60,37 +60,32 @@
             font-size: 18px;
             font-weight: bold;
         }
-        .container {
+       .container {
     position: absolute;
     top: 50%; /* Центрирование по вертикали */
-    right: 0; /* Прижать к правому краю */
+    right: 10px; /* Отступ от правого края */
     transform: translateY(-50%); /* Центрирование по вертикали */
     display: flex;
-    justify-content: flex-start; /* Для выравнивания элементов внутри контейнера */
+    justify-content: center; /* Выравнивание содержимого по центру */
     align-items: center;
 }
 
-.action-button, .link-button {
-    padding: 15px 30px; /* Размер кнопки */
-    font-size: 18px; /* Размер текста */
-    color: #fff; /* Белый текст */
-    background-color: #e74c3c; /* Красный цвет фона */
-    display: inline-block;
-    border: 2px solid transparent; /* Убираем стандартную границу */
-    border-radius: 8px; /* Скругленные углы */
-    cursor: pointer; /* Курсор-указатель при наведении */
-    transition: background-color 0.3s ease, transform 0.2s; /* Плавная смена фона и анимация */
+.action-button {
+    background-color: transparent; /* Прозрачный фон */
+    border: none; /* Убираем границу */
+    cursor: pointer; /* Курсор-рука */
+    font-size: 30px; /* Размер значка руки */
+    padding: 0; /* Убираем внутренние отступы */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease; /* Анимация при наведении */
 }
 
-.action-button:hover, .link-button:hover {
-    background-color: #c0392b; /* Более тёмный красный при наведении */
-    transform: scale(1.05); /* Лёгкое увеличение при наведении */
+.action-button:hover {
+    transform: scale(1.1); /* Лёгкое увеличение при наведении */
 }
 
-.action-button:active {
-    background-color: #a83232; /* Цвет кнопки при нажатии */
-    transform: scale(0.98); /* Лёгкое уменьшение при нажатии */
-}
 
     </style>
 </head>
@@ -104,11 +99,14 @@
         <input type="number" id="inputC" placeholder="Введите значение C">
 
         <button class="btn-calc" onclick="computeResult()">🔍</button>
-        <a href="index.html" class="action-button">☞</a>
 
         <div class="output" id="resultDisplay"></div>
     </div>
-
+    
+    <div class="container">
+        <a href="index.html" class="action-button">☞</a>
+    </div>
+    
     <script>
         function computeResult() {
             var a = parseFloat(document.getElementById('inputA').value);
