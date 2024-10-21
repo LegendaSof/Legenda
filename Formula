@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор Формулы</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        .calculator {
+            max-width: 300px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculator">
+    <h2>Калькулятор Сложной Формулы</h2>
+    <label for="a">Введите значение A:</label>
+    <input type="number" id="a" placeholder="Введите число для A">
+
+    <label for="b">Введите значение B:</label>
+    <input type="number" id="b" placeholder="Введите число для B">
+
+    <label for="c">Введите значение C:</label>
+    <input type="number" id="c" placeholder="Введите число для C">
+
+    <button onclick="calculate()">🔍</button>
+
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+    function calculate() {
+        // Получаем значения a, b и c
+        const a = parseFloat(document.getElementById("a").value);
+        const b = parseFloat(document.getElementById("b").value);
+        const c = parseFloat(document.getElementById("c").value);
+
+        // Проверяем, что все значения введены
+        if (isNaN(a) || isNaN(b) || isNaN(c)) {
+            document.getElementById("result").innerHTML = "Пожалуйста, введите все значения.";
+            return;
+        }
+
+        // Проверка на деление на ноль для формулы
+        if ((a - 5) === 0 || c === 0 || (a + 3) === 0) {
+            document.getElementById("result").innerHTML = "Ошибка: деление на ноль.";
+            return;
+        }
+
+        // Формула: сложная с возведениями в степень, корнями, модулями и дробями
+        const result = ((a ** 2 + b ** 3) / c) * ((b + 10) / (a - 5)) + Math.sqrt(Math.abs(a - b)) + (c / (a + 3));
+
+        // Вывод результата
+        document.getElementById("result").innerHTML = "Результат: " + result.toFixed(2);
+    }
+</script>
+
+</body>
+</html>
