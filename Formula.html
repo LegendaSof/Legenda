@@ -3,110 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Калькулятор Формулы</title>
+    <title>Вычисление Формулы</title>
     <style>
-        body, html {
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+        body, html {
             height: 100%;
+            font-family: 'Georgia', serif;
+            background: url('https://i.pinimg.com/originals/24/06/bc/2406bc79ac536119c045ee01545c84cd.jpg') no-repeat center center fixed;
+            background-size: cover;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Cursive', serif; /* Каллиграфический шрифт */
         }
-        .hero {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .form-container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 25px;
+            border-radius: 12px;
+            color: #fff;
+            text-align: center;
+            width: 320px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+        .form-container h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #e7e7e7;
+        }
+        input {
             width: 100%;
-            height: 100vh;
-            background-image: url('https://i.pinimg.com/originals/24/06/bc/2406bc79ac536119c045ee01545c84cd.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-        .calculator {
-            position: relative;
-            z-index: 1;
-            max-width: 300px;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.8);
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: none;
             font-size: 16px;
         }
-        input[type="number"] {
+        .btn-calc {
             width: 100%;
-            padding: 10px;
-            margin: 10px 0 20px 0;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #e74c3c; /* Красный цвет */
+            padding: 12px;
+            background-color: #ff4d4d;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
+            font-size: 18px;
             cursor: pointer;
-            font-size: 16px;
+            margin-top: 10px;
         }
-        button:hover {
-            background-color: #c0392b; /* Темно-красный при наведении */
+        .btn-calc:hover {
+            background-color: #d94444;
         }
-        .result {
+        .output {
             margin-top: 20px;
             font-size: 18px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
 
-<div class="hero"></div>
+    <div class="form-container">
+        <h1>Формула Расчета</h1>
 
-<div class="calculator">
-    <h2>Калькулятор Формулы</h2>
-    <label for="a">Введите значение A:</label>
-    <input type="number" id="a" placeholder="Введите число для A">
+        <input type="number" id="inputA" placeholder="Введите значение A">
+        <input type="number" id="inputB" placeholder="Введите значение B">
+        <input type="number" id="inputC" placeholder="Введите значение C">
 
-    <label for="b">Введите значение B:</label>
-    <input type="number" id="b" placeholder="Введите число для B">
+        <button class="btn-calc" onclick="computeResult()">Рассчитать</button>
 
-    <label for="c">Введите значение C:</label>
-    <input type="number" id="c" placeholder="Введите число для C">
+        <div class="output" id="resultDisplay"></div>
+    </div>
 
-    <button onclick="calculate()">Вычислить</button>
+    <script>
+        function computeResult() {
+            var a = parseFloat(document.getElementById('inputA').value);
+            var b = parseFloat(document.getElementById('inputB').value);
+            var c = parseFloat(document.getElementById('inputC').value);
 
-    <div class="result" id="result"></div>
-</div>
+            if (isNaN(a) || isNaN(b) || isNaN(c)) {
+                document.getElementById('resultDisplay').innerHTML = "Пожалуйста, введите корректные значения!";
+                return;
+            }
 
-<script>
-    function calculate() {
-        const a = parseFloat(document.getElementById("a").value);
-        const b = parseFloat(document.getElementById("b").value);
-        const c = parseFloat(document.getElementById("c").value);
+            if (a - 5 === 0 || c === 0 || a + 3 === 0) {
+                document.getElementById('resultDisplay').innerHTML = "Ошибка: деление на ноль невозможно!";
+                return;
+            }
 
-        if (isNaN(a) || isNaN(b) || isNaN(c)) {
-            document.getElementById("result").innerHTML = "Пожалуйста, введите все значения.";
-            return;
+            var result = ((a * a + Math.pow(b, 3)) / c) * ((b + 10) / (a - 5)) + Math.sqrt(Math.abs(a - b)) + (c / (a + 3));
+
+            document.getElementById('resultDisplay').innerHTML = "Результат: " + result.toFixed(2);
         }
-
-        if ((a - 5) === 0 || c === 0 || (a + 3) === 0) {
-            document.getElementById("result").innerHTML = "Ошибка: деление на ноль.";
-            return;
-        }
-
-        const result = ((a ** 2 + b ** 3) / c) * ((b + 10) / (a - 5)) + Math.sqrt(Math.abs(a - b)) + (c / (a + 3));
-
-        document.getElementById("result").innerHTML = "Результат: " + result.toFixed(2);
-    }
-</script>
+    </script>
 
 </body>
 </html>
