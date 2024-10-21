@@ -63,10 +63,10 @@
         .container {
     position: absolute;
     top: 50%; /* Центрирование по вертикали */
-    right: 10%; /* Расположение справа */
-    transform: translateY(-50%); /* Сдвиг для точного центрирования по вертикали */
+    right: 0; /* Прижать к правому краю */
+    transform: translateY(-50%); /* Центрирование по вертикали */
     display: flex;
-    justify-content: center;
+    justify-content: flex-start; /* Для выравнивания элементов внутри контейнера */
     align-items: center;
 }
 
