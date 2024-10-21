@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Вычисление Формулы</title>
+    <title>Automatic solution of the formula</title>
     <style>
         * {
             margin: 0;
@@ -60,6 +60,38 @@
             font-size: 18px;
             font-weight: bold;
         }
+        .container {
+    position: absolute;
+    top: 50%; /* Центрирование по вертикали */
+    right: 10%; /* Расположение справа */
+    transform: translateY(-50%); /* Сдвиг для точного центрирования по вертикали */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.action-button, .link-button {
+    padding: 15px 30px; /* Размер кнопки */
+    font-size: 18px; /* Размер текста */
+    color: #fff; /* Белый текст */
+    background-color: #e74c3c; /* Красный цвет фона */
+    display: inline-block;
+    border: 2px solid transparent; /* Убираем стандартную границу */
+    border-radius: 8px; /* Скругленные углы */
+    cursor: pointer; /* Курсор-указатель при наведении */
+    transition: background-color 0.3s ease, transform 0.2s; /* Плавная смена фона и анимация */
+}
+
+.action-button:hover, .link-button:hover {
+    background-color: #c0392b; /* Более тёмный красный при наведении */
+    transform: scale(1.05); /* Лёгкое увеличение при наведении */
+}
+
+.action-button:active {
+    background-color: #a83232; /* Цвет кнопки при нажатии */
+    transform: scale(0.98); /* Лёгкое уменьшение при нажатии */
+}
+
     </style>
 </head>
 <body>
@@ -71,7 +103,8 @@
         <input type="number" id="inputB" placeholder="Введите значение B">
         <input type="number" id="inputC" placeholder="Введите значение C">
 
-        <button class="btn-calc" onclick="computeResult()">Рассчитать</button>
+        <button class="btn-calc" onclick="computeResult()">🔍</button>
+        <button class="action-button">Нажми меня</button>
 
         <div class="output" id="resultDisplay"></div>
     </div>
