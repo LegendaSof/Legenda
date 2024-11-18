@@ -30,11 +30,13 @@ button:hover {
 }
 
 #gameOverMessage {
-    font-size: 30px;
+    font-family: 'Brush Script MT', cursive;
+    font-size: 20px;
     color: red;
     margin-top: 20px;
-}
-
-.hidden {
-    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none; /* Изначально скрыто */
 }
