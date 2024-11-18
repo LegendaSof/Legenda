@@ -161,7 +161,7 @@ function startGame() {
     board = Array.from({ length: ROWS }, () => Array(COLS).fill(0));
     currentPiece = generatePiece();
     gameInterval = setInterval(update, 500);
-    document.getElementById('gameOverMessage').classList.add('hidden'); // Скрыть сообщение Game Over
+    document.getElementById('gameOverMessage').style.display = 'none'; // Скрыть сообщение Game Over
 }
 
 function stopGame() {
@@ -170,7 +170,7 @@ function stopGame() {
 
 function displayGameOver() {
     const gameOverMessage = document.getElementById('gameOverMessage');
-    gameOverMessage.classList.remove('hidden');
+    gameOverMessage.style.display = 'block'; // Показываем сообщение Game Over
 }
 
 document.getElementById('restartButton').addEventListener('click', () => {
