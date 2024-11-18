@@ -155,7 +155,18 @@ function handleKeyPress(event) {
 document.addEventListener('keydown', handleKeyPress);
 
 function startGame() {
+    board = Array.from({ length: ROWS }, () => Array(COLS).fill(0));
+    currentPiece = generatePiece();
     gameInterval = setInterval(update, 500);
 }
+
+function stopGame() {
+    clearInterval(gameInterval);
+}
+
+document.getElementById('restartButton').addEventListener('click', () => {
+    stopGame();
+    startGame();
+});
 
 startGame();
