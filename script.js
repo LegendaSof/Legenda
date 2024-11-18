@@ -100,7 +100,6 @@ function placePiece() {
     currentPiece = generatePiece();
     if (isColliding()) {
         gameOver = true;
-        displayGameOver();
     }
 }
 
@@ -161,16 +160,10 @@ function startGame() {
     board = Array.from({ length: ROWS }, () => Array(COLS).fill(0));
     currentPiece = generatePiece();
     gameInterval = setInterval(update, 500);
-    document.getElementById('gameOverMessage').style.display = 'none'; // Скрыть сообщение Game Over
 }
 
 function stopGame() {
     clearInterval(gameInterval);
-}
-
-function displayGameOver() {
-    const gameOverMessage = document.getElementById('gameOverMessage');
-    gameOverMessage.style.display = 'block'; // Показываем сообщение Game Over
 }
 
 document.getElementById('restartButton').addEventListener('click', () => {
