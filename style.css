@@ -28,15 +28,3 @@ button {
 button:hover {
     background-color: #218838;
 }
-
-#gameOverMessage {
-    font-family: 'Brush Script MT', cursive;
-    font-size: 20px;
-    color: red;
-    margin-top: 20px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: none; /* Изначально скрыто */
-}
