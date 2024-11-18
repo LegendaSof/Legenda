@@ -29,7 +29,6 @@ const TETROMINOS = [
 let board = Array.from({ length: ROWS }, () => Array(COLS).fill(0));
 let currentPiece = generatePiece();
 let gameInterval;
-let gameOver = false;
 
 function drawBoard() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -99,7 +98,8 @@ function placePiece() {
     }
     currentPiece = generatePiece();
     if (isColliding()) {
-        gameOver = true;
+        clearBoard();
+        alert('Game Over!');
     }
 }
 
@@ -137,7 +137,6 @@ function update() {
 }
 
 function handleKeyPress(event) {
-    if (gameOver) return;
     if (event.key === 'ArrowLeft') {
         movePiece(-1, 0);
     } else if (event.key === 'ArrowRight') {
@@ -156,7 +155,6 @@ function handleKeyPress(event) {
 document.addEventListener('keydown', handleKeyPress);
 
 function startGame() {
-    gameOver = false;
     board = Array.from({ length: ROWS }, () => Array(COLS).fill(0));
     currentPiece = generatePiece();
     gameInterval = setInterval(update, 500);
