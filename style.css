@@ -28,3 +28,13 @@ button {
 button:hover {
     background-color: #218838;
 }
+
+#gameOverMessage {
+    font-size: 30px;
+    color: red;
+    margin-top: 20px;
+}
+
+.hidden {
+    display: none;
+}
