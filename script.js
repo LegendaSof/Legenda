@@ -142,6 +142,9 @@ function startGame() {
     document.getElementById('gameOverMessage').style.display = 'none'; // Скрыть сообщение о завершении игры
     gameInterval = setInterval(gameLoop, 1000 / 4); // Замедлить игру
 
+    // Функция для автоматического падения тетромино
+    setInterval(dropShape, 1000 / 2); // Здесь мы запускаем автоматическое падение тетромино
+
     document.addEventListener('keydown', event => {
         if (event.key === 'ArrowLeft') moveShape(-1);
         if (event.key === 'ArrowRight') moveShape(1);
