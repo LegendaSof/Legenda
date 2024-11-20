@@ -128,6 +128,7 @@ function gameLoop() {
 
 function startGame() {
     createShape();
+    gameOver = false;
     setInterval(gameLoop, 1000 / 2);
 
     document.addEventListener('keydown', event => {
@@ -137,5 +138,17 @@ function startGame() {
         if (event.key === 'ArrowUp') rotateShape();
     });
 }
+
+function restartGame() {
+    // Очистка поля и перезапуск игры
+    for (let r = 0; r < ROWS; r++) {
+        for (let c = 0; c < COLS; c++) {
+            BOARD[r][c] = null;
+        }
+    }
+    startGame();
+}
+
+document.getElementById('restartButton').addEventListener('click', restartGame);
 
 startGame();
