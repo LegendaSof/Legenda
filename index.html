@@ -1,162 +1,154 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Главная страница</title>
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
 
-    <!-- Подключение шрифта из Google Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+const COLS = 10;
+const ROWS = 20;
+const BLOCK_SIZE = 30;
+const BOARD = Array.from({ length: ROWS }, () => Array(COLS).fill(null));
 
-    <style>
-        /* Основные стили */
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            background-image: url('https://steamuserimages-a.akamaihd.net/ugc/1662356836776332300/BD5A48C332A735DA27FBCFA1B884BA03F37ACD29/?imw=512&imh=288&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            color: white;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
+const SHAPES = [
+    [[1, 1, 1, 1]], // I shape
+    [[1, 1], [1, 1]], // O shape
+    [[1, 1, 0], [0, 1, 1]], // S shape
+    [[0, 1, 1], [1, 1, 0]], // Z shape
+    [[1, 1, 1], [0, 1, 0]], // T shape
+    [[1, 0, 0], [1, 1, 1]], // L shape
+    [[0, 0, 1], [1, 1, 1]]  // J shape
+];
 
-        /* Стиль для контейнера кнопок */
-        .container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
-            position: absolute;
-            top: 20px; /* Располагаем кнопки сверху */
-            left: 0;
-            right: 0;
-        }
+const COLORS = ['cyan', 'yellow', 'green', 'red', 'blue', 'orange', 'purple'];
 
-        /* Основные стили для кнопок */
-        button {
-            background-color: #FF5722;
-            color: white;
-            padding: 15px 32px;
-            text-align: center;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-            border-radius: 10px;
-            transition: background-color 0.3s ease;
-        }
+let currentShape, currentX, currentY, gameOver = false;
 
-        button:hover {
-            background-color: #E64A19;
-        }
-
-        /* Стили для выпадающего меню */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            left: 0;
-            margin-top: 5px;
-            background-color: #FF5722;
-            min-width: 120px; /* Изменение ширины для более компактного вида */
-            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
-            z-index: 1;
-            border-radius: 10px;
-        }
-
-        .dropdown-content button {
-            background-color: #FF7043;
-            color: white;
-            padding: 10px;
-            text-align: left;
-            border: none;
-            width: 100%;
-            cursor: pointer;
-            border-radius: 0;
-        }
-
-        .dropdown-content button:hover {
-            background-color: #E64A19;
-        }
-
-        /* Стили для заголовка */
-        header {
-            margin-top: 100px;
-        }
-
-        h1 {
-            font-size: 36px;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); 
-        }
-
-        p {
-            font-size: 18px;
-            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7); 
-        }
-
-        /* Стили для футера */
-        footer {
-            text-align: center;
-            padding: 10px;
-            color: white;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-        }
-
-    </style>
-</head>
-<body>
-
-<!-- Горизонтальные кнопки сверху -->
-<div class="container">
-    <button onclick="window.location.href='Formula.html'">Формула</button>
-    <button onclick="window.location.href='Bio.html'">Главная</button>
-    <button onclick="window.location.href='igra.html'">Игра</button>
-
-    <!-- Кнопка с выпадающим меню для эссе -->
-    <div class="dropdown">
-        <button onclick="toggleDropdown()">Эссе</button>
-        <div class="dropdown-content" id="dropdown">
-            <button onclick="window.location.href='Book1.html'">Эссе 1</button>
-            <button onclick="window.location.href='Book2.html'">Эссе 2</button>
-            <button onclick="window.location.href='Book3.html'">Эссе 3</button>
-        </div>
-    </div>
-</div>
-
-<!-- Заголовок по центру страницы под кнопками -->
-<header>
-    <h1>Спасибо за то, что посетили мой сайт!</h1>
-    <p>Выше я предоставила вам навигацию по моим работам.</p>
-</header>
-
-<footer>
-    <p>© г. Донецк 2024</p>
-</footer>
-
-<script>
-    function toggleDropdown() {
-        var dropdown = document.getElementById("dropdown");
-        if (dropdown.style.display === "block") {
-            dropdown.style.display = "none";
-        } else {
-            dropdown.style.display = "block";
+function drawBoard() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let r = 0; r < ROWS; r++) {
+        for (let c = 0; c < COLS; c++) {
+            if (BOARD[r][c]) {
+                ctx.fillStyle = BOARD[r][c];
+                ctx.fillRect(c * BLOCK_SIZE, r * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+            }
         }
     }
-</script>
+}
 
-</body>
-</html>
+function drawShape() {
+    ctx.fillStyle = currentShape.color;
+    for (let r = 0; r < currentShape.matrix.length; r++) {
+        for (let c = 0; c < currentShape.matrix[r].length; c++) {
+            if (currentShape.matrix[r][c]) {
+                ctx.fillRect((currentX + c) * BLOCK_SIZE, (currentY + r) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+            }
+        }
+    }
+}
+
+function createShape() {
+    const index = Math.floor(Math.random() * SHAPES.length);
+    const shapeMatrix = SHAPES[index];
+    currentShape = {
+        matrix: shapeMatrix,
+        color: COLORS[index]
+    };
+    currentX = Math.floor(COLS / 2) - Math.floor(shapeMatrix[0].length / 2);
+    currentY = 0;
+}
+
+function isValidMove() {
+    for (let r = 0; r < currentShape.matrix.length; r++) {
+        for (let c = 0; c < currentShape.matrix[r].length; c++) {
+            if (currentShape.matrix[r][c]) {
+                const x = currentX + c;
+                const y = currentY + r;
+                if (x < 0 || x >= COLS || y >= ROWS || BOARD[y][x]) {
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
+}
+
+function placeShape() {
+    for (let r = 0; r < currentShape.matrix.length; r++) {
+        for (let c = 0; c < currentShape.matrix[r].length; c++) {
+            if (currentShape.matrix[r][c]) {
+                BOARD[currentY + r][currentX + c] = currentShape.color;
+            }
+        }
+    }
+    checkLines();
+    createShape();
+}
+
+function checkLines() {
+    for (let r = ROWS - 1; r >= 0; r--) {
+        if (BOARD[r].every(cell => cell)) {
+            BOARD.splice(r, 1);
+            BOARD.unshift(Array(COLS).fill(null));
+        }
+    }
+}
+
+function rotateShape() {
+    const rotatedShape = {
+        matrix: currentShape.matrix[0].map((_, index) => currentShape.matrix.map(row => row[index])).reverse(),
+        color: currentShape.color
+    };
+    const backupX = currentX;
+    const backupY = currentY;
+    currentShape = rotatedShape;
+    if (!isValidMove()) {
+        currentShape.matrix = rotatedShape.matrix.reverse();
+    }
+}
+
+function moveShape(direction) {
+    currentX += direction;
+    if (!isValidMove()) {
+        currentX -= direction;
+    }
+}
+
+function dropShape() {
+    currentY++;
+    if (!isValidMove()) {
+        currentY--;
+        placeShape();
+    }
+}
+
+function gameLoop() {
+    if (gameOver) return;
+
+    drawBoard();
+    drawShape();
+    dropShape();
+}
+
+function startGame() {
+    createShape();
+    gameOver = false;
+    setInterval(gameLoop, 1000 / 2);
+
+    document.addEventListener('keydown', event => {
+        if (event.key === 'ArrowLeft') moveShape(-1);
+        if (event.key === 'ArrowRight') moveShape(1);
+        if (event.key === 'ArrowDown') dropShape();
+        if (event.key === 'ArrowUp') rotateShape();
+    });
+}
+
+function restartGame() {
+    // Очистка поля и перезапуск игры
+    for (let r = 0; r < ROWS; r++) {
+        for (let c = 0; c < COLS; c++) {
+            BOARD[r][c] = null;
+        }
+    }
+    startGame();
+}
+
+document.getElementById('restartButton').addEventListener('click', restartGame);
+
+startGame();
