@@ -122,7 +122,7 @@ function dropShape() {
         if (!isValidMove()) {
             gameOver = true;
             clearInterval(gameInterval);
-            displayGameOverMessage();
+            displayGameOverMessage(); // Показать сообщение о завершении игры
         }
     }
 }
