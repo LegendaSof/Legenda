@@ -140,7 +140,8 @@ function startGame() {
     createShape();
     gameOver = false;
     document.getElementById('gameOverMessage').style.display = 'none'; // Скрыть сообщение о завершении игры
-    gameInterval = setInterval(gameLoop, 1000 / 2);
+    // Замедлить игру, увеличив интервал
+    gameInterval = setInterval(gameLoop, 1000 / 4); // Это делает игру медленнее, меняя скорость с 1000 / 2 на 1000 / 4
 
     document.addEventListener('keydown', event => {
         if (event.key === 'ArrowLeft') moveShape(-1);
