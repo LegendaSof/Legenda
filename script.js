@@ -122,7 +122,7 @@ function dropShape() {
         if (!isValidMove()) {
             gameOver = true;
             clearInterval(gameInterval);
-            document.getElementById('gameOverMessage').style.display = 'block';
+            displayGameOverMessage();
         }
     }
 }
@@ -140,8 +140,7 @@ function startGame() {
     createShape();
     gameOver = false;
     document.getElementById('gameOverMessage').style.display = 'none'; // Скрыть сообщение о завершении игры
-    // Замедлить игру, увеличив интервал
-    gameInterval = setInterval(gameLoop, 1000 / 4); // Это делает игру медленнее, меняя скорость с 1000 / 2 на 1000 / 4
+    gameInterval = setInterval(gameLoop, 1000 / 4); // Замедлить игру
 
     document.addEventListener('keydown', event => {
         if (event.key === 'ArrowLeft') moveShape(-1);
@@ -156,6 +155,14 @@ function restartGame() {
     gameOver = false;
     document.getElementById('gameOverMessage').style.display = 'none';
     startGame();
+}
+
+function displayGameOverMessage() {
+    ctx.fillStyle = 'red';
+    ctx.font = '48px Arial'; // Большой размер шрифта
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('GAME OVER', canvas.width / 2, canvas.height / 2); // Выводим текст в центре экрана
 }
 
 document.getElementById('restartButton').addEventListener('click', restartGame);
