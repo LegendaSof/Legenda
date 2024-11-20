@@ -143,7 +143,7 @@ function startGame() {
     gameInterval = setInterval(gameLoop, 1000 / 4); // Замедлить игру
 
     // Функция для автоматического падения тетромино
-    setInterval(dropShape, 1000 / 2); // Здесь мы запускаем автоматическое падение тетромино
+    setInterval(dropShape, 1000 / 4); // Увеличиваем интервал до 1000 / 4, чтобы сделать падение медленнее
 
     document.addEventListener('keydown', event => {
         if (event.key === 'ArrowLeft') moveShape(-1);
