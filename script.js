@@ -165,6 +165,17 @@ function displayGameOverMessage() {
     ctx.fillText('GAME OVER', canvas.width / 2, canvas.height / 2); // Выводим текст в центре экрана
 }
 
+// Проверка, когда игра заканчивается
+function checkGameOver() {
+    // Проверяем верхний ряд на заполненность
+    for (let c = 0; c < COLS; c++) {
+        if (BOARD[0][c]) {
+            return true;  // Если в верхней строке есть блоки, игра заканчивается
+        }
+    }
+    return false;
+}
+
 document.getElementById('restartButton').addEventListener('click', restartGame);
 
 startGame();
