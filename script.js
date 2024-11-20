@@ -119,6 +119,11 @@ function dropShape() {
     if (!isValidMove()) {
         currentY--;
         placeShape();
+        if (!isValidMove()) {
+            gameOver = true;
+            clearInterval(gameInterval);
+            document.getElementById('gameOverMessage').style.display = 'block';
+        }
     }
 }
 
@@ -134,6 +139,7 @@ function startGame() {
     initBoard();
     createShape();
     gameOver = false;
+    document.getElementById('gameOverMessage').style.display = 'none'; // Скрыть сообщение о завершении игры
     gameInterval = setInterval(gameLoop, 1000 / 2);
 
     document.addEventListener('keydown', event => {
@@ -147,6 +153,7 @@ function startGame() {
 function restartGame() {
     clearInterval(gameInterval);
     gameOver = false;
+    document.getElementById('gameOverMessage').style.display = 'none';
     startGame();
 }
 
