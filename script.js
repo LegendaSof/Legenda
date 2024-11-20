@@ -4,7 +4,7 @@ const ctx = canvas.getContext('2d');
 const COLS = 10;
 const ROWS = 20;
 const BLOCK_SIZE = 30;
-const BOARD = Array.from({ length: ROWS }, () => Array(COLS).fill(null));
+let BOARD;
 
 const SHAPES = [
     [[1, 1, 1, 1]], // I shape
@@ -18,7 +18,11 @@ const SHAPES = [
 
 const COLORS = ['cyan', 'yellow', 'green', 'red', 'blue', 'orange', 'purple'];
 
-let currentShape, currentX, currentY, gameOver = false;
+let currentShape, currentX, currentY, gameOver = false, gameInterval;
+
+function initBoard() {
+    BOARD = Array.from({ length: ROWS }, () => Array(COLS).fill(null));
+}
 
 function drawBoard() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -127,9 +131,10 @@ function gameLoop() {
 }
 
 function startGame() {
+    initBoard();
     createShape();
     gameOver = false;
-    setInterval(gameLoop, 1000 / 2);
+    gameInterval = setInterval(gameLoop, 1000 / 2);
 
     document.addEventListener('keydown', event => {
         if (event.key === 'ArrowLeft') moveShape(-1);
@@ -140,12 +145,8 @@ function startGame() {
 }
 
 function restartGame() {
-    // Очистка поля и перезапуск игры
-    for (let r = 0; r < ROWS; r++) {
-        for (let c = 0; c < COLS; c++) {
-            BOARD[r][c] = null;
-        }
-    }
+    clearInterval(gameInterval);
+    gameOver = false;
     startGame();
 }
 
